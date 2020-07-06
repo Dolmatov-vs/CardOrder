@@ -1,4 +1,5 @@
 
+import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
@@ -10,6 +11,7 @@ public class CardOrderTest {
 
     @BeforeEach
     void setUp() {
+        Configuration.headless = true;
         open("http://localhost:9999");
         $("[data-test-id='name']").shouldHave(text("Укажите точно как в паспорте"));
         $$(By.className("input__sub")).get(1).shouldHave(text("На указанный номер моб. тел. будет отправлен смс-код для подтверждения заявки на карту. Проверьте, что номер ваш и введен корректно."));
