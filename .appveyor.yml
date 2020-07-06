@@ -3,7 +3,7 @@ image: Ubuntu  # образ для сборки
 stack: jdk 11  # версия JDK
 
 selenide:
-  headless=true:
+  headless: true
 
 branches:
   only:
