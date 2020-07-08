@@ -54,4 +54,21 @@ public class CardOrderTest {
         $("[data-test-id='name']").shouldHave(text("Имя и Фамилия указаные неверно. Допустимы только русские буквы, пробелы и дефисы."));
         $("[data-test-id='name']").shouldHave(cssValue("color", "rgba(255, 92, 92, 1)"));
     }
+
+    @Test
+    void shouldApplicationSentNoChecbox() {
+        $("[data-test-id='name'] input").setValue("Иван Иванов");
+        $("[data-test-id='phone'] input").setValue("+79281234567");
+        $("button").click();
+        $("[class='checkbox__text']").shouldHave(cssValue("color", "rgba(255, 92, 92, 1)"));
+    }
+
+    @Test
+    void shouldNotRequiredFieldWhenSending() {
+        $("[data-test-id='phone'] input").setValue("+79281234567");
+        $("[data-test-id=agreement]").click();
+        $("button").click();
+        $("[data-test-id='name']").shouldHave(text("Поле обязательно для заполнения"));
+        $("[data-test-id='name']").shouldHave(cssValue("color", "rgba(255, 92, 92, 1)"));
+    }
 }
